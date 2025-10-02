@@ -1,10 +1,9 @@
-// src/components/Sidebar.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 
 const navItems = [
-  { to: "/status", label: "System Status" }, // NEW ITEM
+  { to: "/status", label: "System Status" },
   { to: "/products", label: "Manage Products" },
   { to: "/orders", label: "Manage Orders" },
 ];
@@ -25,7 +24,7 @@ const Sidebar = () => {
               <Link 
                 to={item.to} 
                 className={`block py-3 px-4 rounded-md transition duration-200 
-                  ${location.pathname === item.to 
+                  ${location.pathname === item.to || (location.pathname === '/' && item.to === '/status')
                     ? 'bg-blue-700 font-semibold' 
                     : 'hover:bg-gray-700'
                   }`}

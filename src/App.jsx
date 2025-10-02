@@ -1,8 +1,8 @@
-// src/App.jsx
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import SystemStatus from './pages/SystemStatus'; // NEW IMPORT
+import SystemStatus from './pages/SystemStatus';
 import ManageProducts from './pages/ManageProducts';
 import ManageOrders from './pages/ManageOrders';
+// SalesReport is removed
 import Login from './pages/Login';
 import Sidebar from './components/Sidebar';
 import Navbar from './components/Navbar';
@@ -18,8 +18,8 @@ function App() {
         {/* Protected routes */}
         <Route path="/*" element={isAuthenticated ? <Layout /> : <Navigate to="/login" />} />
         
-        {/* Redirect from root to /products if authenticated (Default landing page) */}
-        <Route path="/" element={<Navigate to="/products" replace />} />
+        {/* Redirect from root to /status if authenticated */}
+        <Route path="/" element={<Navigate to="/status" replace />} />
       </Routes>
     </BrowserRouter>
   );
@@ -36,11 +36,13 @@ const Layout = () => {
             On desktop (lg:), we add ml-64 to offset the fixed sidebar. */}
         <main className="p-4 lg:ml-64 transition-all duration-300">
           <Routes>
-            <Route path="/status" element={<SystemStatus />} /> {/* NEW ROUTE */}
+            <Route path="/status" element={<SystemStatus />} />
             <Route path="/products" element={<ManageProducts />} />
             <Route path="/orders" element={<ManageOrders />} />
-            {/* Catch-all for unknown routes now redirects to /products */}
-            <Route path="*" element={<Navigate to="/products" replace />} /> 
+            {/* Removed the path="/sales-report" route */}
+            
+            {/* Catch-all for unknown routes now redirects to /status */}
+            <Route path="*" element={<Navigate to="/status" replace />} /> 
           </Routes>
         </main>
       </div>

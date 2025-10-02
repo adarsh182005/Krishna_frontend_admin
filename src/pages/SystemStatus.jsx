@@ -24,7 +24,7 @@ const SystemStatus = () => {
       };
 
       try {
-        // This endpoint already exists in your backend at routes/orderRoutes.js
+        // This endpoint fetches general stats from your backend
         const { data } = await axios.get(`${backendUrl}/api/orders/stats`, config);
         setStats(data);
       } catch (err) {
@@ -52,7 +52,8 @@ const SystemStatus = () => {
   if (loading) {
     return (
       <div className="p-6 text-center min-h-screen">
-        <p className="text-xl font-semibold text-blue-600 mt-10">Loading System Status...</p>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mt-20"></div>
+        <p className="text-xl font-semibold text-blue-600 mt-4">Loading System Status...</p>
       </div>
     );
   }
@@ -97,7 +98,7 @@ const SystemStatus = () => {
 
       <div className="mt-10 p-6 bg-white rounded-xl shadow-lg">
         <h2 className="text-2xl font-semibold text-gray-800 mb-4 border-b pb-2">Quick Information</h2>
-        <p className="text-gray-600">The statistics above are fetched directly from the backend server using the `/api/orders/stats` endpoint. Ensure this endpoint is functioning correctly to see live data.</p>
+        <p className="text-gray-600">This dashboard uses the dedicated order statistics endpoint (`/api/orders/stats`) to quickly verify system health and key metrics without relying on the complex reporting endpoints that were causing instability.</p>
       </div>
     </div>
   );
