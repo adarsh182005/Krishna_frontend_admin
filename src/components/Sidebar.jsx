@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 
 const navItems = [
-  { to: "/dashboard", label: "Dashboard" },
+  // { to: "/dashboard", label: "Dashboard" }, // REMOVED
   { to: "/products", label: "Manage Products" },
   { to: "/orders", label: "Manage Orders" },
   { to: "/sales-report", label: "Sales Report" },

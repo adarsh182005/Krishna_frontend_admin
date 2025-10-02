@@ -1,6 +1,6 @@
 // src/App.jsx
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import Dashboard from './pages/Dashboard';
+// import Dashboard from './pages/Dashboard'; // REMOVED
 import ManageProducts from './pages/ManageProducts';
 import ManageOrders from './pages/ManageOrders';
 import SalesReport from './pages/SalesReport';
@@ -19,8 +19,8 @@ function App() {
         {/* Protected routes */}
         <Route path="/*" element={isAuthenticated ? <Layout /> : <Navigate to="/login" />} />
         
-        {/* Redirect from root to dashboard if authenticated */}
-        <Route path="/" element={<Navigate to="/dashboard" replace />} />
+        {/* Redirect from root to /products if authenticated */}
+        <Route path="/" element={<Navigate to="/products" replace />} />
       </Routes>
     </BrowserRouter>
   );
@@ -37,13 +37,13 @@ const Layout = () => {
             On desktop (lg:), we add ml-64 to offset the fixed sidebar. */}
         <main className="p-4 lg:ml-64 transition-all duration-300">
           <Routes>
-            <Route path="/dashboard" element={<Dashboard />} />
+            {/* <Route path="/dashboard" element={<Dashboard />} /> REMOVED */}
             <Route path="/products" element={<ManageProducts />} />
             <Route path="/orders" element={<ManageOrders />} />
             <Route path="/sales-report" element={<SalesReport />} />
             
-            {/* Catch-all for unknown routes */}
-            <Route path="*" element={<Dashboard />} /> 
+            {/* Catch-all for unknown routes now redirects to /products */}
+            <Route path="*" element={<Navigate to="/products" replace />} /> 
           </Routes>
         </main>
       </div>

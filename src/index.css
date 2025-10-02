@@ -4,9 +4,10 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /* FIX 1: Set default to light mode colors to ensure dark text on light backgrounds */
+  color-scheme: light;
+  color: #213547; /* Default dark text color for contrast */
+  background-color: #ffffff; /* Default light background color */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -25,14 +26,13 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
+  /* Removed 'display: flex' and 'place-items: center' from body to let the #root element control centering */
   min-width: 320px;
   min-height: 100vh;
 }
 
+/* Keeping h1 style cleaner to defer to Tailwind classes in components */
 h1 {
-  font-size: 3.2em;
   line-height: 1.1;
 }
 
@@ -43,7 +43,7 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #f9f9f9;
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -55,15 +55,4 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
+/* Removed the media query block that was enforcing light mode only inside the query */

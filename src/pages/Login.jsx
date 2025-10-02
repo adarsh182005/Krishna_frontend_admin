@@ -32,6 +32,7 @@ const LoginPage = () => {
   };
 
   return (
+    /* This container is responsible for centering the login form */
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
       <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-xl">
         <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">Admin Login</h1>
