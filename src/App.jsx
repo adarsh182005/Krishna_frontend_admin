@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import SystemStatus from './pages/SystemStatus';
 import ManageProducts from './pages/ManageProducts';
@@ -18,8 +19,8 @@ function App() {
         {/* Protected routes */}
         <Route path="/*" element={isAuthenticated ? <Layout /> : <Navigate to="/login" />} />
         
-        {/* Redirect from root to /status if authenticated */}
-        <Route path="/" element={<Navigate to="/status" replace />} />
+        {/* Redirect from root to /products if authenticated */}
+        <Route path="/" element={<Navigate to="/products" replace />} />
       </Routes>
     </BrowserRouter>
   );
@@ -27,11 +28,20 @@ function App() {
 
 // A new component to handle the main layout structure
 const Layout = () => {
+  const [isSidebarVisible, setIsSidebarVisible] = useState(false);
+
   return (
     <div className="flex min-h-screen bg-gray-100">
-      <Sidebar />
+      <Sidebar isVisible={isSidebarVisible} onClose={() => setIsSidebarVisible(false)} />
+      {/* Backdrop for mobile */}
+      {isSidebarVisible && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-50 z-10 lg:hidden"
+          onClick={() => setIsSidebarVisible(false)}
+        />
+      )}
       <div className="flex-1 overflow-x-hidden"> 
-        <Navbar />
+        <Navbar onMenuClick={() => setIsSidebarVisible(true)} />
         {/* Main content area. On mobile, the sidebar is hidden, so we don't need margin. 
             On desktop (lg:), we add ml-64 to offset the fixed sidebar. */}
         <main className="p-4 lg:ml-64 transition-all duration-300">
