@@ -55,9 +55,10 @@ const OrderDetailModal = ({ order, onClose }) => {
               <p className="text-lg font-bold text-gray-800 mt-1">{formatDate(order.createdAt)}</p>
             </div>
             <div className="p-4 rounded-lg text-white font-bold flex items-center justify-center shadow-md" 
+                // Note: The logic inside getStatusColor is for the modal, which uses solid colors.
                 style={{ backgroundColor: getStatusColor(order.status) }}
             >
-              <p className="text-xl uppercase">{order.status}</p>
+              <p className="text-xl uppercase">{order.status || 'N/A'}</p>
             </div>
           </div>
 
@@ -237,7 +238,8 @@ const ManageOrders = () => {
                   </td>
                   <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                     <span className={`relative inline-block px-3 py-1 font-semibold text-xs leading-tight rounded-full ${getStatusColor(order.status)}`}>
-                      <span className="relative uppercase">{order.status}</span>
+                      {/* FIX: Ensure a fallback value is displayed if order.status is missing/null/empty */}
+                      <span className="relative uppercase">{order.status || 'N/A'}</span>
                     </span>
                   </td>
                   <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-gray-900">
