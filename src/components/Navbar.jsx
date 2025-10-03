@@ -35,14 +35,14 @@ const Navbar = () => {
           {isLoggedIn ? (
             <button
               onClick={handleLogout}
-              className="bg-red-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-red-600 transition duration-200"
+              className="bg-black text-white px-4 py-2 rounded-md shadow-md hover:bg-gray-800 transition duration-200"
             >
               Logout
             </button>
           ) : (
             <button
               onClick={() => navigate('/login')}
-              className="bg-green-600 text-white px-4 py-2 rounded-md shadow-md hover:bg-green-700 transition duration-200"
+              className="bg-black text-white px-4 py-2 rounded-md shadow-md hover:bg-gray-800 transition duration-200"
             >
               Login
             </button>
